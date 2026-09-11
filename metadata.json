@@ -2,5 +2,7 @@
   "name": "CareFlow Hospital",
   "description": "Simulated hospital appointment booking and management platform for CareFlow Hospital with doctor search, slot scheduling, and patient appointment management.",
   "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
 }

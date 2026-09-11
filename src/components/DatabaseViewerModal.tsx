@@ -74,6 +74,8 @@ export const DatabaseViewerModal: React.FC<DatabaseViewerModalProps> = ({ isOpen
     setTimeout(() => setCopied(false), 2000);
   };
 
+  const isCloud = storageService.isCloudFirestoreActive();
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-xs animate-fade-in">
       <div className="bg-white rounded-2xl shadow-2xl border border-slate-200 w-full max-w-4xl max-h-[88vh] flex flex-col overflow-hidden">
@@ -86,12 +88,18 @@ export const DatabaseViewerModal: React.FC<DatabaseViewerModalProps> = ({ isOpen
             <div>
               <div className="flex items-center gap-2">
                 <h3 className="text-base sm:text-lg font-bold text-slate-900">Database Record Inspector</h3>
-                <span className="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-200">
-                  Local Persistent Storage
+                <span className={`text-[11px] font-semibold px-2 py-0.5 rounded-full border ${
+                  isCloud
+                    ? 'bg-emerald-100 text-emerald-800 border-emerald-300'
+                    : 'bg-slate-100 text-slate-800 border-slate-300'
+                }`}>
+                  {isCloud ? 'Cloud Firestore (Active)' : 'Local Persistent Storage'}
                 </span>
               </div>
               <p className="text-xs text-slate-500">
-                Inspect the serialized collections currently inserted and queried by the application
+                {isCloud
+                  ? 'Connected live to Google Cloud Firestore database'
+                  : 'Inspect the serialized collections currently inserted and queried by the application'}
               </p>
             </div>
           </div>
